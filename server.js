@@ -12,9 +12,10 @@ const authorsRouter = require('./routes/authors')
 
 const mongoose = require('mongoose')
 const db = mongoose.connection
+mongoose.set('useUnifiedTopology', true);
 
 db.on('error', error => console.error(error))
-db.once('oper', () => console.log("Connected to mongoose"))
+db.once('open', () => console.log("Connected to mongoose"))
 
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 
